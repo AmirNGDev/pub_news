@@ -1,4 +1,4 @@
-# pub_news
+# Pub News Project
 
 A new Flutter project.
 
