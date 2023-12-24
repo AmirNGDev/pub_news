@@ -5,6 +5,11 @@
 ## The RSS used in this project:  https://pub.dev/feed.atom
 
 
+### VERSION: 1.0.0
+
+<a href="https://github.com/SeyyedAmirNimaGhaebi/BMI-Project/releases/tag/BMI">Download the apk file</a>
+
+
 # Photo Gallery
 
 ![Untitled-1](https://github.com/SeyyedAmirNimaGhaebi/pub_news/assets/124828880/973124f1-b757-47b5-8cde-968f683375d7)
