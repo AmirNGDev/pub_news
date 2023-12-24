@@ -7,7 +7,7 @@
 
 ### VERSION: 1.0.0
 
-<a href="https://github.com/SeyyedAmirNimaGhaebi/BMI-Project/releases/tag/BMI">Download the apk file</a>
+<a href="https://github.com/SeyyedAmirNimaGhaebi/pub_news/releases/tag/apk">Download the apk file</a>
 
 
 # Photo Gallery
