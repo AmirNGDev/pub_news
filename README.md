@@ -11,6 +11,10 @@
 
 # Preview video
 
+
+https://github.com/SeyyedAmirNimaGhaebi/pub_news/assets/124828880/5104f30a-bffa-4186-9344-73654895ca00
+
+
 # Photo Gallery
 
 ![Untitled-1](https://github.com/SeyyedAmirNimaGhaebi/pub_news/assets/124828880/973124f1-b757-47b5-8cde-968f683375d7)
