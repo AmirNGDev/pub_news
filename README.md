@@ -4,7 +4,7 @@
 
 ## The RSS used in this project:  https://pub.dev/feed.atom
 
-
+### VERSION: 1.0.0
 
 
 <a href="https://github.com/SeyyedAmirNimaGhaebi/pub_news/releases/tag/apk">Download the apk file</a>
