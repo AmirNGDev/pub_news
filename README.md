@@ -7,7 +7,9 @@
 ### VERSION: 1.0.0
 
 <a href="https://github.com/SeyyedAmirNimaGhaebi/pub_news/releases/download/output/app-armeabi-v7a-release.apk">Download the apk file</a>
+
 <a href="https://github.com/SeyyedAmirNimaGhaebi/pub_news/releases/download/output/pub_news.exe">Download the exe file for windows</a>
+
 <a href="https://github.com/SeyyedAmirNimaGhaebi/pub_news/releases/tag/apk">Download list</a>
 
 # Preview video
