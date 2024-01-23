@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.pub" "\0"
-            VALUE "FileDescription", "pub_news" "\0"
+            VALUE "CompanyName", "com.example" "\0"
+            VALUE "FileDescription", "Pub News" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "pub_news" "\0"
+            VALUE "InternalName", "Pub News" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.pub. All rights reserved." "\0"
-            VALUE "OriginalFilename", "pub_news.exe" "\0"
-            VALUE "ProductName", "pub_news" "\0"
+            VALUE "OriginalFilename", "Pub News.exe" "\0"
+            VALUE "ProductName", "Pub News" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

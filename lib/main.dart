@@ -7,8 +7,9 @@ import 'package:window_size/window_size.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isWindows) {
-        setWindowMinSize(const Size(1050, 500));
-    }
+    setWindowMinSize(const Size(1050, 500));
+    setWindowTitle('Pub News');
+  }
 
   runApp(const MyApp());
 }
