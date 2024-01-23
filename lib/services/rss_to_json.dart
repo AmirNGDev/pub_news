@@ -13,7 +13,7 @@ Future<dynamic> rssToJson() async {
     var json = MyTransformer.toGData();
     var jsonData = jsonDecode(json);
     return jsonData;
-  } catch (_) {
-    print('Errorrrrrrrrrrrrrrr');
+  } catch (e) {
+    print(e.toString());
   }
 }
