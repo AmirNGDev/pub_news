@@ -67,151 +67,168 @@ class _WindowsScreenState extends State<WindowsScreen> {
                   ),
                 );
               else
-                return RefreshIndicator(
-                  onRefresh: () async {
-                    await Future.delayed(const Duration(seconds: 2));
-                    data = rssToJson();
-                    setState(() {});
-                  },
-                  child: CustomScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    slivers: [
-                      SliverAppBar.medium(
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              width: 30,
-                              height: 30,
-                              child: Image.asset('assets/dart.png'),
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            const Text('Pub News'),
-                          ],
-                        ),
-                        backgroundColor: Colors.black,
-                        foregroundColor: Colors.white,
-                        centerTitle: true,
+                return CustomScrollView(
+                  slivers: [
+                    SliverAppBar.medium(
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: 30,
+                            height: 30,
+                            child: Image.asset('assets/dart.png'),
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          const Text('Pub News'),
+                        ],
                       ),
-                      SliverGrid(
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 5,
-                          childAspectRatio: 0.85,
-                        ),
-                        delegate: SliverChildBuilderDelegate(
-                          (context, index) {
-                            return GestureDetector(
-                              onTap: () async {
-                                final Uri url = Uri.parse(
-                                    snapshot.data['feed']['entry'][index]['link']['href']);
+                      backgroundColor: Colors.black,
+                      foregroundColor: Colors.white,
+                      centerTitle: true,
+                    ),
+                    SliverGrid(
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 5,
+                        childAspectRatio: 0.82,
+                      ),
+                      delegate: SliverChildBuilderDelegate(
+                        (context, index) {
+                          return GestureDetector(
+                            onTap: () async {
+                              final Uri url = Uri.parse(
+                                  snapshot.data['feed']['entry'][index]['link']['href']);
 
-                                if (!await launchUrl(url)) {
-                                  throw Exception('Could not launch $url');
-                                }
-                              },
-                              child: Container(
-                                margin: const EdgeInsets.only(top: 10, left: 8, right: 8),
-                                padding: const EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        SizedBox(
-                                          width: MediaQuery.of(context).size.width / 5 - 80,
-                                          child: Text(
-                                            snapshot.data['feed']['entry'][index]['title']['\$t']
-                                                .split('of')
-                                                .last
-                                                .trim(),
-                                            style: const TextStyle(
-                                              fontSize: 19,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 1,
+                              if (!await launchUrl(url)) {
+                                throw Exception('Could not launch $url');
+                              }
+                            },
+                            child: Container(
+                              margin: const EdgeInsets.only(top: 10, left: 8, right: 8),
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      SizedBox(
+                                        width: MediaQuery.of(context).size.width / 5 - 80,
+                                        child: Text(
+                                          snapshot.data['feed']['entry'][index]['title']['\$t']
+                                              .split('of')
+                                              .last
+                                              .trim(),
+                                          style: const TextStyle(
+                                            fontSize: 19,
+                                            fontWeight: FontWeight.bold,
                                           ),
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width,
-                                      child: Text(
-                                        snapshot.data['feed']['entry'][index]['content']['\$t'],
-                                        style: const TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w400,
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 1,
                                         ),
-                                        maxLines: 4,
-                                        overflow: TextOverflow.ellipsis,
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width,
+                                    child: Text(
+                                      snapshot.data['feed']['entry'][index]['content']['\$t'],
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w400,
                                       ),
+                                      maxLines: 4,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
-                                    const Spacer(),
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width,
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Expanded(
-                                                child: Container(
-                                                  height: 30,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.black,
-                                                    borderRadius: BorderRadius.circular(15),
-                                                  ),
-                                                  padding:
-                                                      const EdgeInsets.symmetric(horizontal: 10),
-                                                  child: Center(
-                                                    child: Text(
-                                                      snapshot.data['feed']['entry'][index]['title']['\$t'].split('of').first.trim(),
-                                                      style: const TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 17,
-                                                      ),
-                                                    ),
-                                                  ),
+                                  ),
+                                  const Spacer(),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: Container(
+                                                height: 30,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.black,
+                                                  borderRadius: BorderRadius.circular(15),
                                                 ),
-                                              ),
-                                              InkWell(
-                                                onTap: () {
-                                                  Clipboard.setData(
-                                                    ClipboardData(
-                                                      text: snapshot.data['feed']['entry'][index]
-                                                          ['link']['href'],
-                                                    ),
-                                                  );
-                                                },
-                                                child: Container(
-                                                  width: 30,
-                                                  height: 30,
-                                                  margin: const EdgeInsets.only(left: 8),
-                                                  decoration: const BoxDecoration(
-                                                    color: Colors.black,
-                                                    shape: BoxShape.circle,
-                                                  ),
-                                                  child: const Center(
-                                                    child: Icon(
-                                                      Icons.copy,
+                                                padding:
+                                                    const EdgeInsets.symmetric(horizontal: 10),
+                                                child: Center(
+                                                  child: Text(
+                                                    snapshot.data['feed']['entry'][index]['title']['\$t'].split('of').first.trim(),
+                                                    style: const TextStyle(
                                                       color: Colors.white,
-                                                      size: 20,
+                                                      fontSize: 17,
                                                     ),
                                                   ),
                                                 ),
                                               ),
-                                            ],
+                                            ),
+                                            InkWell(
+                                              onTap: () {
+                                                Clipboard.setData(
+                                                  ClipboardData(
+                                                    text: snapshot.data['feed']['entry'][index]
+                                                        ['link']['href'],
+                                                  ),
+                                                );
+                                              },
+                                              child: Container(
+                                                width: 30,
+                                                height: 30,
+                                                margin: const EdgeInsets.only(left: 8),
+                                                decoration: const BoxDecoration(
+                                                  color: Colors.black,
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: const Center(
+                                                  child: Icon(
+                                                    Icons.copy,
+                                                    color: Colors.white,
+                                                    size: 20,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: Colors.black,
+                                            borderRadius: BorderRadius.circular(15),
                                           ),
-                                          const SizedBox(
-                                            height: 10,
+                                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                                          child: Center(
+                                            child: Text(
+                                              'updated: ${snapshot.data['feed']['entry'][index]['updated']['\$t'].toString().substring(11, 16)}',
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 17,
+                                              ),
+                                            ),
                                           ),
-                                          Container(
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Visibility(
+                                          visible: snapshot.data['feed']['entry'][index]
+                                                  ['author'] !=
+                                              null,
+                                          child: Container(
                                             height: 30,
                                             decoration: BoxDecoration(
                                               color: Colors.black,
@@ -220,7 +237,11 @@ class _WindowsScreenState extends State<WindowsScreen> {
                                             padding: const EdgeInsets.symmetric(horizontal: 10),
                                             child: Center(
                                               child: Text(
-                                                'updated: ${snapshot.data['feed']['entry'][index]['updated']['\$t'].toString().substring(11, 16)}',
+                                                snapshot.data['feed']['entry'][index]
+                                                            ['author'] ==
+                                                        null
+                                                    ? ''
+                                                    : 'author: ${snapshot.data['feed']['entry'][index]['author']['name']['\$t'].toString()}',
                                                 style: const TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 17,
@@ -228,72 +249,43 @@ class _WindowsScreenState extends State<WindowsScreen> {
                                               ),
                                             ),
                                           ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Visibility(
-                                            visible: snapshot.data['feed']['entry'][index]
-                                                    ['author'] !=
-                                                null,
-                                            child: Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                color: Colors.black,
-                                                borderRadius: BorderRadius.circular(15),
-                                              ),
-                                              padding: const EdgeInsets.symmetric(horizontal: 10),
-                                              child: Center(
-                                                child: Text(
-                                                  snapshot.data['feed']['entry'][index]
-                                                              ['author'] ==
-                                                          null
-                                                      ? ''
-                                                      : 'author: ${snapshot.data['feed']['entry'][index]['author']['name']['\$t'].toString()}',
-                                                  style: const TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 17,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            );
-                          },
-                          childCount: snapshot.data['feed']['entry'].length,
-                        ),
+                            ),
+                          );
+                        },
+                        childCount: snapshot.data['feed']['entry'].length,
                       ),
-                      SliverToBoxAdapter(
-                        child: Column(
-                          children: [
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Text(
-                              snapshot.data['feed']['title']['\$t'].toString(),
-                              style: const TextStyle(fontSize: 19),
-                            ),
-                            Text(
-                              snapshot.data['feed']['subtitle']['\$t'].toString(),
-                              style: const TextStyle(fontSize: 16),
-                            ),
-                            Text(
-                              'The Latest Update : ${snapshot.data['feed']['updated']['\$t'].toString().substring(0, 10)}',
-                              style: const TextStyle(fontSize: 15),
-                            ),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                          ],
-                        ),
+                    ),
+                    SliverToBoxAdapter(
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            snapshot.data['feed']['title']['\$t'].toString(),
+                            style: const TextStyle(fontSize: 19),
+                          ),
+                          Text(
+                            snapshot.data['feed']['subtitle']['\$t'].toString(),
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                          Text(
+                            'The Latest Update : ${snapshot.data['feed']['updated']['\$t'].toString().substring(0, 10)}',
+                            style: const TextStyle(fontSize: 15),
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 );
             }
           },
