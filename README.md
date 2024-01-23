@@ -18,3 +18,7 @@ https://github.com/SeyyedAmirNimaGhaebi/pub_news/assets/124828880/5104f30a-bffa-
 # Photo Gallery
 
 ![Untitled-1](https://github.com/SeyyedAmirNimaGhaebi/pub_news/assets/124828880/973124f1-b757-47b5-8cde-968f683375d7)
+
+![Untitled-1](https://github.com/SeyyedAmirNimaGhaebi/pub_news/assets/124828880/ea154710-c846-4b18-82e0-81ef6fe3888d)
+
+![Untitled-1](https://github.com/SeyyedAmirNimaGhaebi/pub_news/assets/124828880/04781019-04de-418c-9ab0-cc57cf901ff3)
