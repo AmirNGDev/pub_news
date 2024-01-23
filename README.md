@@ -6,7 +6,7 @@
 
 ### VERSION: 1.0.0
 
-<div align="center">
+<div align="left">
    <a href="https://github.com/SeyyedAmirNimaGhaebi/pub_news/releases/download/output/app-armeabi-v7a-release.apks"><img src="https://github.com/SeyyedAmirNimaGhaebi/SeyyedAmirNimaGhaebi/blob/main/image/android.png?raw=true" width="400px">
    </a>
   
