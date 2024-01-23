@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pub_news/routes/home.dart';
+import 'package:pub_news/routes/windowsScreen.dart';
 import 'dart:io' show Platform;
 import 'package:window_size/window_size.dart';
 
