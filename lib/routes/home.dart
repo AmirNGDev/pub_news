@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pub_news/routes/webview.dart';
 import 'package:pub_news/services/rss_to_json.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -22,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: const Color.fromRGBO(220, 220, 220, 1),
       body: SafeArea(
@@ -29,20 +31,133 @@ class _HomeScreenState extends State<HomeScreen> {
           future: data,
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                  child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircularProgressIndicator(
-                    color: Colors.black,
-                    strokeWidth: 2,
+              return CustomScrollView(
+                physics: const BouncingScrollPhysics(),
+                slivers: [
+                  SliverAppBar.medium(
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 30,
+                          height: 30,
+                          child: Image.asset('assets/dart.png'),
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        const Text('Pub News'),
+                      ],
+                    ),
+                    backgroundColor: Colors.black,
+                    foregroundColor: Colors.white,
+                    centerTitle: true,
                   ),
-                  SizedBox(
-                    height: 8,
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        return Container(
+                          margin: const EdgeInsets.only(top: 10, left: 8, right: 8),
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Shimmer.fromColors(
+                                    baseColor: Colors.grey.shade200,
+                                    highlightColor: Colors.grey.shade500,
+                                    child: Container(
+                                      height: 20,
+                                      margin: const EdgeInsets.only(top: 10),
+                                      width: MediaQuery.of(context).size.width - 100,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.grey.shade200,
+                                      ),
+                                    ),
+                                  ),
+                                  Shimmer.fromColors(
+                                    baseColor: Colors.grey.shade200,
+                                    highlightColor: Colors.grey.shade500,
+                                    child: Container(
+                                      width: 30,
+                                      height: 30,
+                                      margin: const EdgeInsets.only(top: 10, right: 10),
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle, color: Colors.grey.shade200),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Shimmer.fromColors(
+                                    baseColor: Colors.grey.shade200,
+                                    highlightColor: Colors.grey.shade500,
+                                    child: Container(
+                                      height: 15,
+                                      margin: const EdgeInsets.only(top: 10),
+                                      width: MediaQuery.of(context).size.width - 50,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.grey.shade200,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Shimmer.fromColors(
+                                    baseColor: Colors.grey.shade200,
+                                    highlightColor: Colors.grey.shade500,
+                                    child: Container(
+                                      height: 15,
+                                      margin: const EdgeInsets.only(top: 10),
+                                      width: MediaQuery.of(context).size.width - 150,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.grey.shade200,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              Row(
+                                children: [
+                                  Shimmer.fromColors(
+                                    baseColor: Colors.grey.shade200,
+                                    highlightColor: Colors.grey.shade500,
+                                    child: Container(
+                                      height: 17,
+                                      margin: const EdgeInsets.only(top: 10),
+                                      width: MediaQuery.of(context).size.width - 200,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.grey.shade200,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                      childCount: 100,
+                    ),
                   ),
-                  Text('please wait'),
                 ],
-              ));
+              );
             } else {
               if (snapshot.hasError) {
                 return Center(child: Text('Error: ${snapshot.error}'));
@@ -67,7 +182,7 @@ class _HomeScreenState extends State<HomeScreen> {
               else
                 return RefreshIndicator(
                   onRefresh: () async {
-                    await Future.delayed(const Duration(seconds: 2));
+                    await Future.delayed(const Duration(seconds: 1));
                     data = rssToJson();
                     setState(() {});
                   },
@@ -100,8 +215,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => WebViewScreen(
-                                      url: snapshot.data['feed']['entry'][index]['link']
-                                          ['href']),
+                                      url: snapshot.data['feed']['entry'][index]['link']['href']),
                                 ));
                               },
                               child: Container(
@@ -119,8 +233,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                         SizedBox(
                                           width: MediaQuery.of(context).size.width - 80,
                                           child: Text(
-                                            snapshot.data['feed']['entry'][index]['title']
-                                                ['\$t'],
+                                            snapshot.data['feed']['entry'][index]['title']['\$t']
+                                                .split('of')
+                                                .last
+                                                .trim(),
                                             style: const TextStyle(
                                               fontSize: 19,
                                               fontWeight: FontWeight.bold,
@@ -132,13 +248,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         IconButton(
                                           onPressed: () {
                                             Clipboard.setData(ClipboardData(
-                                                text: snapshot.data['feed']['entry'][index]
-                                                    ['link']['href']));
+                                                text: snapshot.data['feed']['entry'][index]['link']
+                                                    ['href']));
                                           },
                                           tooltip: 'Copy Link',
                                           icon: const Icon(
                                             Icons.copy,
                                             color: Colors.black,
+                                            size: 20,
                                           ),
                                         ),
                                       ],
@@ -157,64 +274,59 @@ class _HomeScreenState extends State<HomeScreen> {
                                     const SizedBox(
                                       height: 8,
                                     ),
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width,
-                                      child: SingleChildScrollView(
-                                        scrollDirection: Axis.horizontal,
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                              height: 30,
-                                              decoration: BoxDecoration(
+                                    Visibility(
+                                      visible:
+                                          snapshot.data['feed']['entry'][index]['author'] != null,
+                                      child: Row(
+                                        children: [
+                                          const Icon(
+                                            Icons.person_2_sharp,
+                                            color: Colors.black,
+                                            size: 17,
+                                          ),
+                                          SizedBox(
+                                            width: size.width - 50,
+                                            child: Text(
+                                              snapshot.data['feed']['entry'][index]['author'] ==
+                                                      null
+                                                  ? ''
+                                                  : snapshot.data['feed']['entry'][index]['author']
+                                                          ['name']['\$t']
+                                                      .toString(),
+                                              style: const TextStyle(
                                                 color: Colors.black,
-                                                borderRadius: BorderRadius.circular(15),
+                                                fontSize: 14,
                                               ),
-                                              padding:
-                                                  const EdgeInsets.symmetric(horizontal: 10),
-                                              child: Center(
-                                                child: Text(
-                                                  'updated: ${snapshot.data['feed']['entry'][index]['updated']['\$t'].toString().substring(11, 16)}',
-                                                  style: const TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 17,
-                                                  ),
-                                                ),
-                                              ),
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
                                             ),
-                                            const SizedBox(
-                                              width: 8,
-                                            ),
-                                            Visibility(
-                                              visible: snapshot.data['feed']['entry'][index]
-                                                      ['author'] !=
-                                                  null,
-                                              child: Container(
-                                                height: 30,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.black,
-                                                  borderRadius: BorderRadius.circular(15),
-                                                ),
-                                                padding:
-                                                    const EdgeInsets.symmetric(horizontal: 10),
-                                                child: Center(
-                                                  child: Text(
-                                                    snapshot.data['feed']['entry'][index]
-                                                                ['author'] ==
-                                                            null
-                                                        ? ''
-                                                        : 'author: ${snapshot.data['feed']['entry'][index]['author']['name']['\$t'].toString()}',
-                                                    style: const TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 17,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.upload_rounded,
+                                          color: Colors.black,
+                                          size: 17,
+                                        ),
+                                        SizedBox(
+                                          width: size.width - 50,
+                                          child: Text(
+                                            snapshot.data['feed']['entry'][index]['title']['\$t']
+                                                .split('of')
+                                                .first
+                                                .trim(),
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14,
+                                            ),
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
@@ -224,7 +336,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           childCount: snapshot.data['feed']['entry'].length,
                         ),
                       ),
-                    
                       SliverToBoxAdapter(
                         child: Column(
                           children: [
