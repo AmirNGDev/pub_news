@@ -13,7 +13,7 @@
    <a href="https://github.com/SeyyedAmirNimaGhaebi/pub_news/releases/download/output/pub_news.msix"><img src="https://github.com/SeyyedAmirNimaGhaebi/SeyyedAmirNimaGhaebi/blob/main/image/windows.png?raw=true" width="400px">
    </a>
    
-   <a href="https://github.com/SeyyedAmirNimaGhaebi/pub_news/releases/tag/apk"><img src="https://github.com/SeyyedAmirNimaGhaebi/SeyyedAmirNimaGhaebi/blob/main/image/download%20list.png?raw=true" width="400px">
+   <a href="https://github.com/SeyyedAmirNimaGhaebi/pub_news/releases"><img src="https://github.com/SeyyedAmirNimaGhaebi/SeyyedAmirNimaGhaebi/blob/main/image/download%20list.png?raw=true" width="400px">
    </a>
 </div>
 
