@@ -4,7 +4,7 @@
 
 ## The RSS used in this project:  https://pub.dev/feed.atom
 
-### VERSION: 1.0.0
+### VERSION: 1.1.0
 
 <div align="left">
    <a href="https://github.com/SeyyedAmirNimaGhaebi/pub_news/releases/download/output/app-armeabi-v7a-release.apk"><img src="https://github.com/SeyyedAmirNimaGhaebi/SeyyedAmirNimaGhaebi/blob/main/image/android.png?raw=true" width="400px">
@@ -27,7 +27,7 @@ https://github.com/SeyyedAmirNimaGhaebi/pub_news/assets/124828880/5104f30a-bffa-
 
 https://github.com/SeyyedAmirNimaGhaebi/pub_news/assets/124828880/e65c792c-bab1-4092-b779-ca2ec8368df5
 
-# V1.1.0
+# v1.1.0 Changes
 
 
 https://github.com/SeyyedAmirNimaGhaebi/pub_news/assets/124828880/792e6d83-000f-4a14-a4d7-0b0b243c2e57
