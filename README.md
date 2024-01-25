@@ -27,7 +27,7 @@ https://github.com/SeyyedAmirNimaGhaebi/pub_news/assets/124828880/5104f30a-bffa-
 
 https://github.com/SeyyedAmirNimaGhaebi/pub_news/assets/124828880/e65c792c-bab1-4092-b779-ca2ec8368df5
 
-
+# V1.1.0
 
 
 https://github.com/SeyyedAmirNimaGhaebi/pub_news/assets/124828880/792e6d83-000f-4a14-a4d7-0b0b243c2e57
